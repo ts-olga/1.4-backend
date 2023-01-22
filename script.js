@@ -89,15 +89,32 @@ function addUser() {
       );
   }
 
+  let elementsArray = document.querySelectorAll("input");
+
+  elementsArray.forEach(function (elem) {
+    elem.addEventListener("focus", checkInputs);
+    elem.addEventListener("keypress", addingUser);
+  });
+
+  function checkInputs() {
+    elementsArray.forEach(function (elem) {
+      if (elem.value === "") {
+        elem.classList.add("red-border");
+      } else {
+        elem.classList.remove("red-border");
+      }
+    });
+  }
+
   document.querySelector(".add-button").addEventListener("click", addingUser);
 
   function addingUser() {
-    // checkInputs();
+    checkInputs();
 
     let name = document.querySelector("input[name=name]").value;
     let surname = document.querySelector("input[name=surname]").value;
-    let birthday = document.querySelector("input[name=birthday]").value;
     let avatar = document.querySelector("input[name=avatar]").value;
+    let birthday = document.querySelector("input[name=birthday]").value;
 
     if (name && surname && birthday && avatar) {
       fetch(config1.apiUrl, {
