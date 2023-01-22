@@ -89,19 +89,13 @@ function addUser() {
       );
   }
 
-  let elementsArray = document.querySelectorAll("input");
-
-  elementsArray.forEach(function (elem) {
-    elem.addEventListener("focus", checkInputs);
-    elem.addEventListener("keypress", addingUser);
-  });
-
   function checkInputs() {
+    let elementsArray = document.querySelectorAll("input");
     elementsArray.forEach(function (elem) {
       if (elem.value === "") {
-        elem.classList.add("red-border");
+        elem.style.border = "1px solid red";
       } else {
-        elem.classList.remove("red-border");
+        elem.style.border = "none";
       }
     });
   }
